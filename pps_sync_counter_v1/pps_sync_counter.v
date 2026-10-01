@@ -3,7 +3,7 @@
 // edge-detects it, runs a free-running counter, and captures
 // the counter value + interval on every PPS edge.
 
-// made in collaboration with claude code and Jack Allenburg
+// made in collaboration with Claude Code and Jack Allenburg
 
 module pps_sync_counter (
     input  wire        clk,
@@ -25,6 +25,8 @@ module pps_sync_counter (
             pps_sync2 <= 1'b0;
             pps_prev  <= 1'b0;
         end else begin
+            // this causes it to take two clock cycles to register
+            // the pps edge but it ensures metastability
             // ensures the pps signal is fully registered
             pps_sync1 <= pps_raw;   // stage 1: may go metastable
             pps_sync2 <= pps_sync1; // stage 2: settled value
@@ -32,11 +34,14 @@ module pps_sync_counter (
             pps_prev  <= pps_sync2; // for edge detection
         end
     end
-    // pps_edge must be when the last read of the pps
+    // pps_edge is when the last read of the pps
     // wire was 0 and the current read is 1
+    // this ensures just the start of the
     assign pps_edge = pps_sync2 & ~pps_prev;
 
-    // what happens when the 32 bit register gets full?
+    // the interval gets calculated by simple subtraction
+    // operation that is resistant to the rollover of the
+    // clock
 
     // ---- free-running counter + capture ----
     always @(posedge clk or posedge rst) begin
