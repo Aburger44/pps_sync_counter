@@ -6,3 +6,4 @@ pps_sync_counter_v2/*.out
 pps_sync_counter_v2/*.md
 pps_sync_counter_v2/*.vcd
 pps_sync_counter_v2/*.vvp
+PPS_CSR_GUIDE.md

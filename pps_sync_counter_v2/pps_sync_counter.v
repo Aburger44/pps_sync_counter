@@ -22,6 +22,7 @@ module pps_sync_counter #(
                                        // module without a full reset
 
     output wire        pps_edge,      // 1-cycle pulse on synchronized PPS rising edge
+                                        // just for the testbench and verilog simulator
     output reg  [31:0] counter,       // cycles since last PPS edge (1 on the cycle after it), saturates
     output reg  [31:0] interval,      // cycles between last two PPS edges, saturates
     output wire        pps_missing    // high while counter > TIMEOUT_CYCLES
@@ -61,7 +62,9 @@ module pps_sync_counter #(
             counter        <= 32'd0;
             interval       <= 32'd0;
 
-        end else begin
+        end else if (enable) begin
+            // only count while enabled; when enable is low nothing in
+            // this branch runs, so counter and interval hold their values
             // add 1 to the counter, but stop at the maximum instead of
             // wrapping to 0 (saturate), so a long PPS outage can never
             // look like a fresh, short count

@@ -1,0 +1,49 @@
+addrmap pps_regs {
+    name = "PPS peripheral register map";
+    desc = "CSR block for the PPS sync counter module";
+
+    reg {
+        name = "Control";
+        desc = "Enable bit and reset bit for PPS counter when raised high"
+        field {
+            sw = rw;
+            hw = r;
+
+        } enable[0:0] = 0;
+
+        field {
+            sw = rw;
+            hw = r;
+
+        } rst[1:1] = 0
+    }
+
+
+    reg {
+        name = "Interval"
+        desc = "The count of the last PPS interval"
+        field {
+            sw = r;
+            hw = w;
+
+        } interval[31:0]
+    }
+    reg {
+        name = "Counter"
+        desc = "The counter value starting at 0 at new PPS edge"
+        field {
+            sw = r;
+            hw = w;
+
+        } counter[31:0]
+    }
+    reg {
+        name = "PPS missing"
+        desc = "Raises when the PPS edge hasn't been detected within count threshold"
+        field {
+            sw = r;
+            hw = w;
+
+        } pps_missing[0:0]
+    }
+}

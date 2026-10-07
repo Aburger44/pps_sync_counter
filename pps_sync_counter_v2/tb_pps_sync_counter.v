@@ -1,25 +1,25 @@
 // tb_pps_sync_counter.v
 // Self-checking testbench for pps_sync_counter v2 (reset-on-PPS version
-// with enable and interval_valid).
+// with enable).
 //
 // Drives an asynchronous "PPS" input (deliberately NOT aligned to clk
 // edges) and checks, every clock cycle, that:
 //   1. pps_edge is a single-cycle pulse, exactly one per PPS pulse,
 //      appearing 2 clk rising edges after pps_raw rises (2-FF sync).
-//   2. counter restarts at 1 on the cycle after pps_edge and otherwise
+//      This holds whether or not the module is enabled.
+//   2. counter restarts at 0 on the cycle after pps_edge and otherwise
 //      increments by exactly 1 per cycle, saturating at 0xFFFFFFFF.
 //   3. interval updates only after a pps_edge, holds its value between
 //      edges, and equals the true number of clk cycles between the last
-//      two PPS rising edges (or 0xFFFFFFFF if the counter saturated).
+//      two PPS rising edges minus 1 (the design's documented one-cycle
+//      offset), or 0xFFFFFFFF if the counter saturated.
 //   4. pps_missing is high exactly while counter > TIMEOUT_CYCLES, and
-//      goes high during an interval only if that interval was longer
-//      than the timeout.
-//   5. rst (asynchronous) clears counter and interval immediately, and
-//      the design recovers cleanly afterward.
-//   6. interval_valid is 1 only after the second PPS edge since reset or
-//      enable, and is 0 after an interval that saturated.
-//   7. while enable is low, counter and interval hold and interval_valid
-//      is 0; after re-enabling it takes two fresh PPS edges to be valid.
+//      goes high during an interval only if the counter passed the
+//      timeout in that interval.
+//   5. rst (synchronous) clears counter and interval on the next clk
+//      rising edge, and the design recovers cleanly afterward.
+//   6. while enable is low, counter and interval hold their values, and
+//      a PPS edge does not restart the counter.
 //
 // The reference interval is measured by the testbench directly from
 // pps_raw (rising edges of clk counted between two pps_raw rising
@@ -35,8 +35,12 @@
 // directly to just below 0xFFFFFFFF and lets it count up into saturation.
 //
 // The first pps_edge after any reset or re-enable does not have a
-// previous PPS edge, so the interval it produces is not a PPS interval.
-// That value is printed but not checked; interval_valid must be 0 then.
+// previous enabled PPS edge, so the interval it produces is not a PPS
+// interval (after re-enable it also leaves out the disabled time). That
+// value is printed but not checked.
+//
+// enable is only changed well away from PPS edges, so every edge is
+// either fully enabled or fully disabled.
 //
 // Run:  iverilog -o simulation.vvp pps_sync_counter.v tb_pps_sync_counter.v
 //       vvp simulation.vvp
@@ -56,7 +60,6 @@ module tb_pps_sync_counter;
     wire        pps_edge;
     wire [31:0] counter;
     wire [31:0] interval;
-    wire        interval_valid;
     wire        pps_missing;
 
     pps_sync_counter #(
@@ -69,7 +72,6 @@ module tb_pps_sync_counter;
         .pps_edge(pps_edge),
         .counter(counter),
         .interval(interval),
-        .interval_valid(interval_valid),
         .pps_missing(pps_missing)
     );
 
@@ -86,10 +88,14 @@ module tb_pps_sync_counter;
     integer total_rises      = 0;
     integer total_edges      = 0;
 
-    reg     enable_q         = 0; // enable as the DUT saw it at the last clk edge
+    // rst and enable as the DUT saw them at the last clk rising edge.
+    // Both are synchronous, so this is what decides what the DUT did.
+    reg     rst_q            = 1;
+    reg     enable_q         = 0;
 
     always @(posedge clk) begin
         posedge_count = posedge_count + 1;
+        rst_q         = rst;
         enable_q      = enable;
     end
 
@@ -112,10 +118,7 @@ module tb_pps_sync_counter;
     reg        prev_edge         = 0; // pps_edge at the previous sample
     reg [31:0] prev_counter      = 0;
     reg [31:0] prev_interval     = 0;
-    reg        prev_valid        = 0;
-    reg        valid_expected    = 0; // what interval_valid should read
-    reg        valid_next        = 0; // valid_expected after the latest edge
-    integer    edges_since_start = 0; // pps_edge pulses since reset/enable
+    integer    edges_since_start = 0; // enabled pps_edge pulses since reset/enable
     reg [31:0] expected_interval = 0;
     reg        expected_valid    = 0; // latest edge has a true reference
     reg        missing_seen      = 0; // pps_missing went high this interval
@@ -126,99 +129,97 @@ module tb_pps_sync_counter;
             checks = checks + 1;
             if (!cond) begin
                 errors = errors + 1;
-                $display("FAIL t=%0t ns: %0s | counter=%0d interval=%0d interval_valid=%b pps_edge=%b pps_missing=%b",
-                         $time, what, counter, interval, interval_valid, pps_edge, pps_missing);
+                $display("FAIL t=%0t ns: %0s | counter=%0d interval=%0d enable=%b pps_edge=%b pps_missing=%b",
+                         $time, what, counter, interval, enable_q, pps_edge, pps_missing);
             end
         end
     endtask
 
     always @(negedge clk) begin
-        if (rst) begin
-            check(counter == 0 && interval == 0 && interval_valid == 0,
-                  "outputs not cleared in reset");
+        if (rst_q) begin
+            check(counter == 0 && interval == 0, "outputs not cleared in reset");
             check(pps_edge == 0 && pps_missing == 0, "pps_edge/pps_missing high in reset");
-            prev_edge       = 0;
-            prev_counter    = 0;
-            prev_interval   = 0;
-            prev_valid      = 0;
-            valid_expected  = 0;
-            expected_valid    = 0;
-            missing_seen      = 0;
-            edges_since_start = 0;
-        end else if (!enable_q) begin
-            // --- disabled: counter/interval hold, interval_valid cleared ---
-            check(counter == prev_counter && interval == prev_interval,
-                  "counter/interval changed while disabled");
-            check(interval_valid == 0, "interval_valid not cleared while disabled");
             prev_edge         = 0;
-            prev_valid        = 0;
-            valid_expected    = 0;
+            prev_counter      = 0;
+            prev_interval     = 0;
             expected_valid    = 0;
             missing_seen      = 0;
             edges_since_start = 0;
         end else begin
-            // --- counter and interval behaviour for this cycle ---
-            if (prev_edge) begin
-                check(counter == 1, "counter did not restart at 1 after pps_edge");
-                valid_expected = valid_next;
-                if (expected_valid) begin
-                    check(interval == expected_interval,
-                          "interval != true PPS period");
-                    $display("t=%0t ns | interval=%0d cycles (expected %0d)",
-                             $time, interval, expected_interval);
-                end else begin
-                    $display("t=%0t ns | interval=%0d cycles (first edge after reset/enable: not a PPS interval, unchecked)",
-                             $time, interval);
-                end
-            end else if (poked) begin
-                // counter was written by the testbench; resync to it
-                poked = 0;
-            end else begin
-                check(counter == ((prev_counter == COUNT_MAX) ? COUNT_MAX
-                                                              : prev_counter + 1),
-                      "counter did not increment/saturate correctly");
-                check(interval == prev_interval, "interval changed without pps_edge");
-            end
-
-            // --- interval_valid behaviour ---
-            check(interval_valid == valid_expected,
-                  "interval_valid wrong for this interval");
-
-            // --- pps_missing behaviour ---
-            check(pps_missing == (counter > TIMEOUT),
-                  "pps_missing does not match counter > TIMEOUT");
-            if (pps_missing)
-                missing_seen = 1;
-
-            // --- pps_edge behaviour ---
+            // --- pps_edge behaviour (independent of enable) ---
             if (pps_edge) begin
                 check(!prev_edge, "pps_edge high for more than one cycle");
                 check(edges_this_pulse == 0, "more than one pps_edge per PPS pulse");
                 check(posedge_count - last_rise == 2,
                       "pps_edge latency is not 2 clk edges");
-                edges_this_pulse  = edges_this_pulse + 1;
-                total_edges       = total_edges + 1;
-                edges_since_start = edges_since_start + 1;
-                expected_valid    = (edges_since_start >= 2);
-                // a saturated counter means the true interval is too
-                // long to count, so the DUT must report COUNT_MAX
-                expected_interval = (counter == COUNT_MAX) ? COUNT_MAX
-                                                           : last_rise - prev_rise;
-                // valid only for a real, unsaturated measurement
-                valid_next        = expected_valid && (counter != COUNT_MAX);
-                // counter runs 1 .. interval, so pps_missing should
-                // have fired only if interval > TIMEOUT
-                if (expected_valid)
-                    check(missing_seen == (expected_interval > TIMEOUT),
-                          "pps_missing fired/missed for this interval");
+                edges_this_pulse = edges_this_pulse + 1;
+                total_edges      = total_edges + 1;
+            end
+
+            if (!enable_q) begin
+                // --- disabled: counter and interval hold, PPS ignored ---
+                check(counter == prev_counter && interval == prev_interval,
+                      "counter/interval changed while disabled");
+                check(pps_missing == (counter > TIMEOUT),
+                      "pps_missing does not match counter > TIMEOUT");
+                if (pps_edge)
+                    $display("t=%0t ns | pps_edge fired while disabled | counter=%0d (must hold)",
+                             $time, counter);
+                expected_valid    = 0;
                 missing_seen      = 0;
-                $display("t=%0t ns | pps_edge fired | counter=%0d", $time, counter);
+                edges_since_start = 0;
+            end else begin
+                // --- counter and interval behaviour for this cycle ---
+                if (prev_edge) begin
+                    check(counter == 0, "counter did not restart at 0 after pps_edge");
+                    if (expected_valid) begin
+                        check(interval == expected_interval,
+                              "interval != true PPS period - 1");
+                        $display("t=%0t ns | interval=%0d cycles (expected %0d)",
+                                 $time, interval, expected_interval);
+                    end else begin
+                        $display("t=%0t ns | interval=%0d cycles (first edge after reset/enable: not a PPS interval, unchecked)",
+                                 $time, interval);
+                    end
+                end else if (poked) begin
+                    // counter was written by the testbench; resync to it
+                    poked = 0;
+                end else begin
+                    check(counter == ((prev_counter == COUNT_MAX) ? COUNT_MAX
+                                                                  : prev_counter + 1),
+                          "counter did not increment/saturate correctly");
+                    check(interval == prev_interval, "interval changed without pps_edge");
+                end
+
+                // --- pps_missing behaviour ---
+                check(pps_missing == (counter > TIMEOUT),
+                      "pps_missing does not match counter > TIMEOUT");
+                if (pps_missing)
+                    missing_seen = 1;
+
+                // --- what the next cycle should show after this edge ---
+                if (pps_edge) begin
+                    edges_since_start = edges_since_start + 1;
+                    expected_valid    = (edges_since_start >= 2);
+                    // the counter restarts at 0, so it reaches the true
+                    // period minus 1 by the next edge; a saturated counter
+                    // means the true interval is too long to count, so the
+                    // DUT must report COUNT_MAX
+                    expected_interval = (counter == COUNT_MAX) ? COUNT_MAX
+                                                               : last_rise - prev_rise - 1;
+                    // counter runs 0 .. expected_interval, so pps_missing
+                    // should have fired only if that passed TIMEOUT
+                    if (expected_valid)
+                        check(missing_seen == (expected_interval > TIMEOUT),
+                              "pps_missing fired/missed for this interval");
+                    missing_seen      = 0;
+                    $display("t=%0t ns | pps_edge fired | counter=%0d", $time, counter);
+                end
             end
 
             prev_edge     = pps_edge;
             prev_counter  = counter;
             prev_interval = interval;
-            prev_valid    = interval_valid;
         end
     end
 
@@ -242,10 +243,12 @@ module tb_pps_sync_counter;
         rst = 1;
         enable = 0;
         #23 rst = 0;      // deliberately not a multiple of the clk period
-        // Stay disabled for a while (outputs must hold at 0), then enable
+        // Stay disabled for a while (counter must hold at 0), then enable
         // well before the first PPS pulse, mimicking software writing
         // CONTROL to start the module.
-        #500 enable = 1;
+        #500;
+        check(counter == 0, "counter moved while disabled after reset");
+        enable = 1;
         #9514;            // first pulse at t=10037 ns: arbitrary, unaligned
 
         // Periods are not multiples of 10 ns, so each pulse lands at a
@@ -260,14 +263,14 @@ module tb_pps_sync_counter;
         pps_period(3001, 10003);   // wide pulse: still one pps_edge only
         pps_period(23,   10003);
 
-        // Asynchronous reset in the middle of an interval.
+        // Synchronous reset in the middle of an interval. Hold it for 20 ns
+        // so at least one clk rising edge sees it, then check the outputs.
         pps_raw = 1; #23; pps_raw = 0;
         #4001;
         rst = 1;
-        #1;
-        check(counter == 0 && interval == 0 && interval_valid == 0,
-              "async reset did not clear outputs");
-        #36 rst = 0;
+        #20;
+        check(counter == 0 && interval == 0, "sync reset did not clear outputs");
+        #17 rst = 0;
         #(10003 - 23 - 4001 - 37);
 
         // Recovery after reset: first interval is unchecked, rest checked.
@@ -289,18 +292,21 @@ module tb_pps_sync_counter;
               "counter did not saturate with pps_missing high");
         #(10006 - 23 - 2002 - 2000);
 
-        // PPS returns: interval = COUNT_MAX with interval_valid = 0, then
-        // normal valid intervals again.
+        // PPS returns: interval = COUNT_MAX, then normal intervals again.
         pps_period(23, 10003);
         pps_period(23, 10003);
         pps_period(23, 10003);
 
-        // Disable in the middle of an interval, then re-enable. Outputs
-        // hold and interval_valid clears; the first edge after enabling is
-        // unchecked, and interval_valid returns only on the second edge.
+        // Disable in the middle of an interval, send a PPS pulse while
+        // disabled, then re-enable. Counter and interval must hold the
+        // whole time (the PPS must not restart the counter). After
+        // re-enabling, the first interval is unchecked and the second
+        // is checked again.
         pps_raw = 1; #23; pps_raw = 0;
         #3001 enable = 0;
-        #2001 enable = 1;
+        #500;
+        pps_raw = 1; #23; pps_raw = 0;   // PPS while disabled
+        #1478 enable = 1;
         #(10003 - 23 - 3001 - 2001);
         pps_period(23, 10003);
         pps_period(23, 10003);
