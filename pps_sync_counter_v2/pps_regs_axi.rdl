@@ -4,46 +4,47 @@ addrmap pps_regs {
 
     reg {
         name = "Control";
-        desc = "Enable bit and reset bit for PPS counter when raised high"
+        desc = "Control register for the PPS counter";
         field {
+            desc = "Enable bit for PPS counter when raised high";
             sw = rw;
             hw = r;
-
         } enable[0:0] = 0;
 
         field {
+            desc = "Reset bit for PPS counter, interval, and pps edge when raised high";
             sw = rw;
             hw = r;
-
-        } rst[1:1] = 0
-    }
+        } rst[1:1] = 0;
+    } control @ 0x0;
 
 
     reg {
-        name = "Interval"
-        desc = "The count of the last PPS interval"
+        name = "Interval";
+        desc = "The count of the last PPS interval";
         field {
             sw = r;
             hw = w;
+        } interval[31:0];
+    } interval @ 0x4;
 
-        } interval[31:0]
-    }
+
     reg {
-        name = "Counter"
-        desc = "The counter value starting at 0 at new PPS edge"
+        name = "Counter";
+        desc = "The counter value starting at 0 at new PPS edge";
         field {
             sw = r;
             hw = w;
+        } counter[31:0];
+    } counter @ 0x8;
 
-        } counter[31:0]
-    }
+
     reg {
-        name = "PPS missing"
-        desc = "Raises when the PPS edge hasn't been detected within count threshold"
+        name = "PPS missing";
+        desc = "Raises when the PPS edge hasn't been detected within count threshold";
         field {
             sw = r;
             hw = w;
-
-        } pps_missing[0:0]
-    }
-}
+        } pps_missing[0:0];
+    } pps_missing @ 0xC;
+};
