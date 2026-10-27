@@ -91,6 +91,7 @@ module pps_axi_core #(
         .hwif_in        (hwif_in),
         .hwif_out       (hwif_out)
     );
-
+    
+`default_nettype wire
 endmodule
     

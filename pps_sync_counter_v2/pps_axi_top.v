@@ -28,8 +28,8 @@ module pps_axi_top #(
         output wire [31:0] s_axi_rdata,
         output wire [1:0] s_axi_rresp,
         input wire pps_raw,
-        output logic pps_missing,
-        output logic pps_edge
+        output wire pps_missing,
+        output wire pps_edge
 );
 
     pps_axi_core #(
@@ -60,5 +60,5 @@ module pps_axi_top #(
         .pps_edge      (pps_edge),
         .pps_missing   (pps_missing)
     );
-    
+
 endmodule
