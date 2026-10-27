@@ -1,0 +1,5 @@
+hwif_in.interval.interval.next[31:0]
+hwif_in.counter.counter.next[31:0]
+hwif_in.pps_missing.pps_missing.next
+hwif_out.control.enable.value
+hwif_out.control.rst.value
