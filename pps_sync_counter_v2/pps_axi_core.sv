@@ -46,6 +46,8 @@ module pps_axi_core #(
     // assign the reset value to be the or of axi full system 
     // reset and software reset
     assign core_rst = ~s_axi_aresetn | hwif_out.control.rst.value;
+    // this just makes the naming much cleaner
+    // and easier to follow
     // assign the enable wire
     assign enable = hwif_out.control.enable.value;
     // assign the axi status fields
@@ -91,7 +93,6 @@ module pps_axi_core #(
         .hwif_in        (hwif_in),
         .hwif_out       (hwif_out)
     );
-    
-`default_nettype wire
+
 endmodule
-    
+`default_nettype wire
