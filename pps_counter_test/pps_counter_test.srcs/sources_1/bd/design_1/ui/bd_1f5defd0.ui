@@ -14,16 +14,16 @@ preplace inst processing_system7_0 -pg 1 -lvl 2 -x 540 -y -100 -defaultsOSRD
 preplace inst pps_axi_top_0 -pg 1 -lvl 1 -x 170 -y -60 -defaultsOSRD
 preplace inst axi_smc -pg 1 -lvl 4 -x 1270 -y 90 -defaultsOSRD
 preplace inst rst_ps7_0_50M -pg 1 -lvl 3 -x 940 -y 130 -defaultsOSRD
+preplace netloc pps_axi_top_0_pps_edge 1 1 4 310J 10 760J -50 NJ -50 NJ
+preplace netloc pps_axi_top_0_pps_missing 1 1 4 320J 20 750J -70 NJ -70 NJ
+preplace netloc pps_raw_0_1 1 0 1 N -30
 preplace netloc processing_system7_0_FCLK_CLK0 1 0 4 20 -160 330 40 770 20 1120
 preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 740 -60n
 preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 4 30 30 NJ 30 NJ 30 1110
-preplace netloc pps_axi_top_0_pps_missing 1 1 4 320J 20 750J -70 NJ -70 NJ
-preplace netloc pps_axi_top_0_pps_edge 1 1 4 310J 10 760J -50 NJ -50 NJ
-preplace netloc pps_raw_0_1 1 0 1 N -30
+preplace netloc axi_smc_M00_AXI 1 0 5 30 -150 340J 0 NJ 0 NJ 0 1410
 preplace netloc processing_system7_0_DDR 1 2 3 NJ -140 N -140 N
 preplace netloc processing_system7_0_FIXED_IO 1 2 3 NJ -120 N -120 N
 preplace netloc processing_system7_0_M_AXI_GP0 1 2 2 NJ -100 1130
-preplace netloc axi_smc_M00_AXI 1 0 5 30 -150 340J 0 NJ 0 NJ 0 1410
 levelinfo -pg 1 -10 170 540 940 1270 1430
 pagesize -pg 1 -db -bbox -sgen -130 -200 1580 230
 "
