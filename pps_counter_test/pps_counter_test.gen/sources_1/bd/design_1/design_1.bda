@@ -197,7 +197,7 @@
             "V3": {
                 "VT": "AC",
                 "BA": "0x40000000",
-                "HA": "0x40000FFF",
+                "HA": "0x4000FFFF",
                 "BP": "C_BASEADDR",
                 "HP": "C_HIGHADDR",
                 "MA": "Data",

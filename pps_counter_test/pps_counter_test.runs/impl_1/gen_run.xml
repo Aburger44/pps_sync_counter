@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z035ffg900-2" LaunchTime="1794866779">
-  <File Type="ROUTE-PWR" Name="pps_axi_top_power_routed.rpt"/>
+<GenRun Id="impl_1" LaunchPart="xc7z035ffg900-2" LaunchTime="1794954445">
   <File Type="PA-TCL" Name="pps_axi_top.tcl"/>
-  <File Type="ROUTE-PWR-SUM" Name="pps_axi_top_power_summary_routed.pb"/>
-  <File Type="OPT-RQA-PB" Name="pps_axi_top_rqa_opted.pb"/>
   <File Type="REPORTS-TCL" Name="pps_axi_top_reports.tcl"/>
   <File Type="INIT-TIMING" Name="pps_axi_top_timing_summary_init.rpt"/>
   <File Type="OPT-DCP" Name="pps_axi_top_opt.dcp"/>
   <File Type="OPT-DRC" Name="pps_axi_top_drc_opted.rpt"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="pps_axi_top_routed_bb.dcp"/>
   <File Type="OPT-UTIL" Name="pps_axi_top_utilization_opted.rpt"/>
-  <File Type="ROUTE-TIMING-PB" Name="pps_axi_top_timing_summary_routed.pb"/>
   <File Type="OPT-UTIL-PB" Name="pps_axi_top_utilization_opted.pb"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="pps_axi_top_methodology_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="pps_axi_top.hwdef"/>
   <File Type="OPT-TIMING" Name="pps_axi_top_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="pps_axi_top_rqa_opted.pb"/>
   <File Type="PWROPT-DCP" Name="pps_axi_top_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="pps_axi_top_drc_pwropted.rpt"/>
-  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="pps_axi_top.nts"/>
   <File Type="PWROPT-TIMING" Name="pps_axi_top_timing_summary_pwropted.rpt"/>
   <File Type="PLACE-DCP" Name="pps_axi_top_placed.dcp"/>
   <File Type="PLACE-IO" Name="pps_axi_top_io_placed.rpt"/>
@@ -27,19 +22,17 @@
   <File Type="PLACE-CTRL" Name="pps_axi_top_control_sets_placed.rpt"/>
   <File Type="PLACE-SIMILARITY" Name="pps_axi_top_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="pps_axi_top_incremental_reuse_pre_placed.rpt"/>
-  <File Type="NOC_SOLUTION_FILE" Name="pps_axi_top.ncr"/>
   <File Type="PLACE-TIMING" Name="pps_axi_top_timing_summary_placed.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="pps_axi_top_power_routed.rpx"/>
   <File Type="PLACE-RQA-PB" Name="pps_axi_top_rqa_placed.pb"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="pps_axi_top_postplace_pwropt.dcp"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="pps_axi_top_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="pps_axi_top_physopt.dcp"/>
   <File Type="PHYSOPT-DRC" Name="pps_axi_top_drc_physopted.rpt"/>
   <File Type="PHYSOPT-TIMING" Name="pps_axi_top_timing_summary_physopted.rpt"/>
-  <File Type="ROUTE-UTIL" Name="pps_axi_top_utilization_routed.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="pps_axi_top_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="pps_axi_top_routed.dcp"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="pps_axi_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="pps_axi_top_routed_bb.dcp"/>
+  <File Type="ROUTE-UTIL" Name="pps_axi_top_utilization_routed.rpt"/>
   <File Type="ROUTE-UTIL-PB" Name="pps_axi_top_utilization_routed.pb"/>
   <File Type="ROUTE-DRC" Name="pps_axi_top_drc_routed.rpt"/>
   <File Type="ROUTE-DRC-PB" Name="pps_axi_top_drc_routed.pb"/>
@@ -47,15 +40,20 @@
   <File Type="ROUTE-METHODOLOGY-DRC" Name="pps_axi_top_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="pps_axi_top_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="pps_axi_top_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-RQS-PB" Name="pps_axi_top_rqs_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="pps_axi_top_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="pps_axi_top_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="pps_axi_top_power_routed.rpx"/>
   <File Type="ROUTE-STATUS" Name="pps_axi_top_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="pps_axi_top_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="pps_axi_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="pps_axi_top_timing_summary_routed.pb"/>
   <File Type="ROUTE-TIMING-RPX" Name="pps_axi_top_timing_summary_routed.rpx"/>
   <File Type="ROUTE-SIMILARITY" Name="pps_axi_top_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-CLK" Name="pps_axi_top_clock_utilization_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW" Name="pps_axi_top_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="pps_axi_top_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="pps_axi_top_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="pps_axi_top_rqs_routed.pb"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="pps_axi_top_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="pps_axi_top_postroute_physopt_bb.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="pps_axi_top_timing_summary_postroute_physopted.rpt"/>
@@ -64,6 +62,8 @@
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="pps_axi_top_bus_skew_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="pps_axi_top_bus_skew_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="pps_axi_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="pps_axi_top.nts"/>
+  <File Type="NOC_SOLUTION_FILE" Name="pps_axi_top.ncr"/>
   <File Type="BG-BIT" Name="pps_axi_top.bit"/>
   <File Type="BG-BIN" Name="pps_axi_top.bin"/>
   <File Type="BITSTR-MSK" Name="pps_axi_top.msk"/>
@@ -126,6 +126,16 @@
     <File Path="$PGENDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/pps_test_signal_generation.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/pps_test_signal_generation.v"/>
+        <Attr Name="ImportTime" Val="1794953390"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

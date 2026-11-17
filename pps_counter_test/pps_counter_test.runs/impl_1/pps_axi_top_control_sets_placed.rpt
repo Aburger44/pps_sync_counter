@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Mon Nov 16 17:08:16 2026
+| Date         : Tue Nov 17 17:28:28 2026
 | Host         : DESKTOP-L9OHGVQ running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file pps_axi_top_control_sets_placed.rpt
 | Design       : pps_axi_top
@@ -79,10 +79,10 @@ Table of Contents
 |  s_axi_aclk_IBUF_BUFG | u_core/u_regs/axil_wvalid0                          | u_core/u_regs/p_0_in                |                3 |              3 |         1.00 |
 |  s_axi_aclk_IBUF_BUFG |                                                     |                                     |                3 |              5 |         1.67 |
 |  s_axi_aclk_IBUF_BUFG |                                                     | u_core/u_regs/p_0_in                |                6 |             11 |         1.83 |
-|  s_axi_aclk_IBUF_BUFG | u_core/u_counter/counter[0]_i_2_n_0                 | u_core/u_counter/counter[0]_i_1_n_0 |                8 |             32 |         4.00 |
 |  s_axi_aclk_IBUF_BUFG | u_core/u_counter/interval[31]_i_1_n_0               | u_core/u_regs/SR[0]                 |               13 |             32 |         2.46 |
 |  s_axi_aclk_IBUF_BUFG | u_core/u_regs/axil_resp_buffer_rdata[1][31]_i_1_n_0 | u_core/u_regs/p_0_in                |               10 |             32 |         3.20 |
 |  s_axi_aclk_IBUF_BUFG | u_core/u_regs/axil_resp_buffer_rdata[0]             | u_core/u_regs/p_0_in                |               13 |             32 |         2.46 |
+|  s_axi_aclk_IBUF_BUFG | u_core/u_counter/counter[0]_i_2_n_0                 | u_core/u_counter/counter[0]_i_1_n_0 |                8 |             32 |         4.00 |
 +-----------------------+-----------------------------------------------------+-------------------------------------+------------------+----------------+--------------+
 
 

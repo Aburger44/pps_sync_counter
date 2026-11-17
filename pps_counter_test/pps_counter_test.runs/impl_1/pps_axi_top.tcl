@@ -97,6 +97,7 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {HDL-1065} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Write Bitstream" START { ROLLUP_AUTO }
@@ -107,8 +108,8 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param general.usePosixSpawnForFork 1
   set_param chipscope.maxJobs 3
-  set_param bd.open.in_stealth_mode 1
-  set_param runs.launchOptions { -jobs 6  }
+  set_param bd.open.in_stealth_mode 8
+  set_param runs.launchOptions { -jobs 12  }
   open_checkpoint pps_axi_top_routed.dcp
   set_property webtalk.parent_dir {C:/Users/wireless institute 1/Desktop/jacks_files/pps_sync_counter/pps_counter_test/pps_counter_test.cache/wt} [current_project]
 set_property TOP pps_axi_top [current_fileset]
