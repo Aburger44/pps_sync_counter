@@ -1,4 +1,4 @@
-'timescale 1ns/1ns
+`timescale 1ns/1ns
 
 module pps_test_gen #(
     parameter [31:0] PERIOD_CYCLES = 100_000_000, 
