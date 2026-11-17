@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z035ffg900-2" LaunchTime="1794866779">
+  <File Type="ROUTE-PWR" Name="pps_axi_top_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="pps_axi_top.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="pps_axi_top_power_summary_routed.pb"/>
+  <File Type="OPT-RQA-PB" Name="pps_axi_top_rqa_opted.pb"/>
+  <File Type="REPORTS-TCL" Name="pps_axi_top_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="pps_axi_top_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="pps_axi_top_opt.dcp"/>
+  <File Type="OPT-DRC" Name="pps_axi_top_drc_opted.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="pps_axi_top_routed_bb.dcp"/>
+  <File Type="OPT-UTIL" Name="pps_axi_top_utilization_opted.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="pps_axi_top_timing_summary_routed.pb"/>
+  <File Type="OPT-UTIL-PB" Name="pps_axi_top_utilization_opted.pb"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="pps_axi_top_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="pps_axi_top.hwdef"/>
+  <File Type="OPT-TIMING" Name="pps_axi_top_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DCP" Name="pps_axi_top_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="pps_axi_top_drc_pwropted.rpt"/>
+  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="pps_axi_top.nts"/>
+  <File Type="PWROPT-TIMING" Name="pps_axi_top_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="pps_axi_top_placed.dcp"/>
+  <File Type="PLACE-IO" Name="pps_axi_top_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="pps_axi_top_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="pps_axi_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="pps_axi_top_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="pps_axi_top_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="pps_axi_top_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="pps_axi_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="NOC_SOLUTION_FILE" Name="pps_axi_top.ncr"/>
+  <File Type="PLACE-TIMING" Name="pps_axi_top_timing_summary_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="pps_axi_top_power_routed.rpx"/>
+  <File Type="PLACE-RQA-PB" Name="pps_axi_top_rqa_placed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="pps_axi_top_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="pps_axi_top_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="pps_axi_top_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="pps_axi_top_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="pps_axi_top_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-UTIL" Name="pps_axi_top_utilization_routed.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="pps_axi_top_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="pps_axi_top_routed.dcp"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="pps_axi_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-UTIL-PB" Name="pps_axi_top_utilization_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="pps_axi_top_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="pps_axi_top_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="pps_axi_top_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="pps_axi_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="pps_axi_top_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="pps_axi_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-RQS-PB" Name="pps_axi_top_rqs_routed.pb"/>
+  <File Type="ROUTE-STATUS" Name="pps_axi_top_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="pps_axi_top_route_status.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="pps_axi_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="pps_axi_top_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="pps_axi_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="pps_axi_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="pps_axi_top_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="pps_axi_top_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="pps_axi_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="pps_axi_top_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="pps_axi_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="pps_axi_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="pps_axi_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="pps_axi_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="pps_axi_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="pps_axi_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="pps_axi_top.bit"/>
+  <File Type="BG-BIN" Name="pps_axi_top.bin"/>
+  <File Type="BITSTR-MSK" Name="pps_axi_top.msk"/>
+  <File Type="BITSTR-RBT" Name="pps_axi_top.rbt"/>
+  <File Type="BITSTR-NKY" Name="pps_axi_top.nky"/>
+  <File Type="BITSTR-BMM" Name="pps_axi_top_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="pps_axi_top.mmi"/>
+  <File Type="PDI-FILE" Name="pps_axi_top.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="pps_axi_top_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="pps_axi_top_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="pps_axi_top.rcfi"/>
+  <File Type="CFI_FILE" Name="pps_axi_top.cfi"/>
+  <File Type="RNPI_FILE" Name="pps_axi_top.rnpi"/>
+  <File Type="RCDO-FILE" Name="pps_axi_top.rcdo"/>
+  <File Type="MARKER-RNPI-FILE" Name="pps_axi_top_markers.rnpi"/>
+  <File Type="MARKER-RCDO-FILE" Name="pps_axi_top_markers.rcdo"/>
+  <File Type="BOOT_RNPI_FILE" Name="pps_axi_top_boot.rnpi"/>
+  <File Type="BOOT_MARKER_RNPI_FILE" Name="pps_axi_top_boot_markers.rnpi"/>
+  <File Type="PL_RNPI_FILE" Name="pps_axi_top_pld.rnpi"/>
+  <File Type="PL_MARKER_RNPI_FILE" Name="pps_axi_top_pld_markers.rnpi"/>
+  <File Type="PL_MASK_RNPI_FILE" Name="pps_axi_top_pld_mask.rnpi"/>
+  <File Type="PL_SHUTDOWN_RNPI_FILE" Name="pps_axi_top_pld_shutdown.rnpi"/>
+  <File Type="PL_UNMASK_RNPI_FILE" Name="pps_axi_top_pld_unmask.rnpi"/>
+  <File Type="PL-RCDO-FILE" Name="pps_axi_top_pld.rcdo"/>
+  <File Type="PL-CLEAR-RCDO-FILE" Name="pps_axi_top_pld_clear.rcdo"/>
+  <File Type="PL_MARKER_RCDO_FILE" Name="pps_axi_top_pld_markers.rcdo"/>
+  <File Type="PL_MASK_RCDO_FILE" Name="pps_axi_top_pld_mask.rcdo"/>
+  <File Type="PL_UNMASK_MARKER_RCDO_FILE" Name="pps_axi_top_pld_unmask_markers.rcdo"/>
+  <File Type="PL_UNMASK_RCDO_FILE" Name="pps_axi_top_pld_unmask.rcdo"/>
+  <File Type="NPI_FILE" Name="pps_axi_top.npi"/>
+  <File Type="RBD_FILE" Name="pps_axi_top.rbd"/>
+  <File Type="MMI-FILE" Name="pps_axi_top.mmi"/>
+  <File Type="BIF-FILE" Name="pps_axi_top.bif"/>
+  <File Type="BOOT-BIF-FILE" Name="pps_axi_top_boot.bif"/>
+  <File Type="PL-BIF-FILE" Name="pps_axi_top_pld.bif"/>
+  <File Type="LTX-FILE" Name="pps_axi_top.ltx"/>
+  <File Type="BOOT-LTX-FILE" Name="pps_axi_top_boot.ltx"/>
+  <File Type="PL-LTX-FILE" Name="pps_axi_top_pld.ltx"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="pps_axi_top.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="pps_axi_top.sysdef"/>
+  <File Type="BG-BGN" Name="pps_axi_top.bgn"/>
+  <File Type="BG-DRC" Name="pps_axi_top.drc"/>
+  <File Type="RDI-RDI" Name="pps_axi_top.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="pps_axi_top_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="pps_axi_top_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/design_1/design_1.bd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PGENDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/pps_sync_counter.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/pps_sync_counter.v"/>
+        <Attr Name="ImportTime" Val="1793218595"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/regblock/pps_regs_pkg.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/regblock/pps_regs_pkg.sv"/>
+        <Attr Name="ImportTime" Val="1793218595"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/pps_axi_core.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/pps_axi_core.sv"/>
+        <Attr Name="ImportTime" Val="1793218595"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/regblock/pps_regs.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/regblock/pps_regs.sv"/>
+        <Attr Name="ImportTime" Val="1793218595"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/pps_sync_counter_v2/pps_axi_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../pps_sync_counter_v2/pps_axi_top.v"/>
+        <Attr Name="ImportTime" Val="1793218595"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="pps_axi_top"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/pps_axi_top.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
